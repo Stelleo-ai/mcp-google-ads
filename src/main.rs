@@ -68,7 +68,8 @@ async fn run_http(config: Config) -> Result<()> {
             StreamableHttpServerConfig::default().disable_allowed_hosts()
         }
         Some(hosts) => StreamableHttpServerConfig::default().with_allowed_hosts(hosts.clone()),
-    };
+    }
+    .with_legacy_session_mode(false);
 
     let service = StreamableHttpService::new(
         move || {
